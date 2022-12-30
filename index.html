@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-DAY1</title>
+</head>
+<style>
+    h2{
+        text-decoration: underline;
+        color: rgb(163, 75, 12);
+        
+    }
+    h3{
+        font-size: 19px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: darkblue;
+    }
+    pre{
+      font-size: 16px;
+     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+
+    }
+</style>
+<body>
+    <h2>JS Interview Preparation-DAY1</h2>
+    <h3>1. Difference between “ == “ and “ === “ operators.</h3>
+    <pre>
+Ans-> Both are comparison operator. They both return boolean value.
+       "=="  just compare the value where as "===" compares values as well as datatype.
+         Ex:  X=2                   X==Y :true
+               Y="2"                X===Y: false
+    </pre>
+    <h3>2. What is the spread operator?</h3>
+    <pre>
+Ans-> New addition to the ES6 JavaScript.Allows us to destructure the non-primitive datatypes(array,object)
+        EX:    let arr=[1,2,3]
+                 console.log(...arr)
+    </pre>
+    <h3>3. What are the differences between var, let and const?</h3>
+    <pre>
+Ans-> var is introduced before ES6 Whereas let and const introduced on ES6 version of JavaScript.
+      The scope of var is functional scope whereas the scope of let and const is block level
+      var can be updated and redeclared in the scope. let can be uplated but not redeclarable. const can't be updated and redeclared.
+      var and let can be declared without initialization but const can't         
+    </pre>
+    <h3>4. What is execution context?</h3>
+    <pre>
+Ans-> When browser encounters script tag, JS engine creates a new environment for execution. This environment is known as execution context.
+           Two kinds of execution context
+                i)GEC (Global Execution Context)
+               ii)FEC  (Functional Execution Context)
+            The creation of execuition context happens in two phase.
+               i)Creation phase-->Memory allocation, variable etc happens here.
+               ii)Execution Phase--> Code execution happens here.   
+    </pre>
+    <h3>5. What is meant by first class functions</h3>
+    <pre>
+Ans-> A programming language is said to have first class function when functions in that languages are treated like any other variable.
+          JS has first class function,that can be
+               i) Assigned to variables
+                      const foo=()=>{
+                        console.log('foobar')
+                      }
+                      foo();
+               ii) Passes as argument to functions.
+                        function printHi(){
+                            console.log('Function passed as an argument')
+                        }
+                        function execute(functionAsArgument){
+                            functionAsArgument();
+                        }
+                        execute(printHi)
+               iii) Returned from functions.
+                         function getF(){
+                            return function(){
+                                console.log('I am function returned from another function'); 
+                            }
+                         }
+                         let fn=getF();
+                         fn();
+    </pre>
+    <h3>6. What are closures? Give an example of closure</h3>
+    <pre>
+Ans-> Closure is a function that has acess to the variables in its lexical environment even when it is executed outside the environment.
+            function makeCounter(){
+                let count=0;
+                return function(){
+                    count +=1;
+                    return count;
+                }
+            }
+            const counter=makeCounter();
+            console.log(counter());
+            console.log(counter());
+    </pre>
+    <h3>Explain call(), apply() and, bind() methods. Give an example of call(), apply(), bind()</h3>
+    <pre>
+Ans-->The call method is used to call a function with a specified this value and arguments passed as individual values. 
+            Example:  
+            function test(arg1,arg2){
+                console.log(this.name,arg1,arg2);
+            }
+            const testName={
+                name:'Prepbytes'
+            }
+            test.apply(testName,100,200)
+      The apply method is similar to call() but arguments passed as array.  
+            Example:
+            function test(...arguments){
+                console.log(this.name,arguments);
+            }
+            const testName={
+                name:'Prepbytes'
+            }
+            test.call(testName,[100,200])
+       The bind method is used to create a new function, that has the same body of the original function, but with a specified this value and arguments. 
+            Example
+            function test(arg){
+                console.log(this.name,arg);
+            }
+            const testName=test.bind(name:'Prepbytes','EA17')
+            testName()
+    </pre>
+    <script src="main.js"></script>
+</body>
+</html>
